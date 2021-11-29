@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Python Flask Bucket List App</title>
+ 
+ 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+    <script src="../static/js/jquery-3.6.0.js"></script>
+    <script src="../static/js/signUp.js"></script>
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <h1>DMV Driver Register Form</h1>
+        <form>
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" name="firstName" id="firstName" class="form-control" />
+                  <label class="form-label" for="firstName">First name</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" name="lastName" class="form-control" />
+                  <label class="form-label" for="lastName">Last name</label>
+                </div>
+              </div>
+            </div>
+          
+            <div class="form-outline mb-4">
+              <input type="password" name="ssn" class="form-control" />
+              <label class="form-label" for="ssn">SSN</label>
+            </div>
+          
+            <div class="form-outline mb-4">
+              <input type="text" name="address" class="form-control" />
+              <label class="form-label" for="address">Address</label>
+            </div>
+          
+
+            <div class="form-outline mb-4">
+              <input type="date" name="birthdate" class="form-control" />
+              <label class="form-label" for="birthdate">Birthdate</label>
+            </div>
+
+
+            <div class="form-outline mb-4">
+                <input type="text" name="height" class="form-control" />
+                <label class="form-label" for="height">Height</label>
+            </div>
+
+
+              <div class="form-outline mb-4">
+                <input type="text" name="eye" class="form-control" />
+                <label class="form-label" for="eye">Eye color</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" name="sex" class="form-control" />
+                <label class="form-label" for="sex">Sex</label>
+              </div>
+
+            <!-- Submit button -->
+            <button id="btnSignUp" type="button" class="btn btn-primary btn-block mb-4">Sign up</button>
+          
+          </form>
+    </div>
+</body>
+ 
+</html>
