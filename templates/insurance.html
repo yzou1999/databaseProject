@@ -1,0 +1,119 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="../static/js/jquery-3.6.0.js"></script>
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Dashboard</title>
+    </head>
+  
+    <body>
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{url_for('index')}}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('id')}}">id</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{url_for('insurance')}}">insurance <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('vehicle')}}">vehicle</a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('driverRecord')}}">driverRecord</a>
+                </li> -->
+              </ul>
+            </div>
+            <div class="search-container">
+              <form action="{{ url_for('getDriver')}}" method="post" autocomplete="off">
+                <input type="text" placeholder="Search driver by SSN" name="ssn">
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+          </nav>
+        <div class="container">
+          <form action="{{ url_for('postGetInsurance')}}" method="post" autocomplete="off">
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="msg">{{ msg }}</div>
+              
+            <label for="company">Choose the company you want:</label>
+            <select id="company" name="company">
+                <option value="Progressive">Progressive</option>
+                <option value="Geico">Geico</option>
+                <option value="State Farm">State Farm</option>
+            </select>  
+          </br>
+        </br>
+            <label for="plan">Choose your plan</label>
+            <select id="plan" name="plan">
+              <option value="premium">Premium</option>
+              <option value="regular">Regular</option>
+          </select>
+          
+        </br>
+      </br>
+            <div class="form-outline mb-4">
+              <input type="text" name="premium" class="form-control" />
+              <label class="form-label" for="premium">Premium</label>
+            </div>        
+
+
+            <div class="form-outline mb-4">
+                <input type="text" name="coverage" class="form-control" />
+                <label class="form-label" for="coverage">Coverage</label>
+            </div>
+
+            <div class="form-outline mb-4">
+              <input type="text" name="vehicle" class="form-control" />
+              <label class="form-label" for="vehicle">Vehicle that you want to cover</label>
+          </div>
+            <!-- Submit button -->
+            <button value="Register" type="submit" class="btn btn-primary btn-block mb-4">Create Insurance</button>
+          
+          </form>
+          <div class="container">
+            <form action="{{ url_for('postGetInsurance')}}" method="get" autocomplete="off">
+              <button type="submit" class="btn btn-primary btn-block">Get list of your Policies</button>
+            </form>
+            {% if data %}
+            <div class = "InsuranceData">
+              <table width="100%" style='table-layout:fixed;'>
+                <tr>
+                  <th scope="col">Policy ID:</th>
+                  <th scope="col">Company:</th>
+                  <th scope="col">Plan: </th>
+                  <th scope="col">Premium:</th>
+                  <th scope="col">Coverage:</th>
+                  <th scope="col">Expiration Date</th>
+                  <th scope="col">VIN of Vehicle Covered</th>
+              </tr>
+                {% for segment in data %}
+                  <tr>
+                    <td>{{segment[0]}}</td>
+                    <td>{{segment[1]}}</td>
+                    <td>{{segment[2]}}</td>
+                    <td>{{segment[3]}}</td>
+                    <td>{{segment[4]}}</td>
+                    <td>{{segment[5]}}</td>
+                    <td>{{segment[6]}}</td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          {% endif %}
+          </div> 
+        </div>
+    </body>
+</html>

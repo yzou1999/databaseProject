@@ -1,0 +1,112 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="../static/js/jquery-3.6.0.js"></script>
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Dashboard</title>
+    </head>
+  
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('index')}}">Home </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('id')}}">id</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('insurance')}}">insurance</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{url_for('vehicle')}}">vehicle <span class="sr-only">(current)</span></a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('driverRecord')}}">driverRecord</a>
+                </li> -->
+              </ul>
+            </div>
+          </nav>
+        <div class="container">
+          <h1>Register Vehicle</h1>
+          <form action="{{ url_for('postGetVehicle')}}" method="post" autocomplete="off">
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="msg">{{ msg }}</div>
+
+            <div class="form-outline mb-4">
+              <input type="text" name="vin" class="form-control" />
+              <label class="form-label" for="vin">VIN</label>
+            </div>
+
+
+            <div class="form-outline mb-4">
+                <input type="text" name="model" class="form-control" />
+                <label class="form-label" for="model">Model</label>
+            </div>
+
+
+              <div class="form-outline mb-4">
+                <input type="text" name="year" class="form-control" />
+                <label class="form-label" for="year">Year</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" name="manufacturer" class="form-control" />
+                <label class="form-label" for="manufacturer">Manufacturer</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" name="color" class="form-control" />
+                <label class="form-label" for="color">Color</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" name="license" class="form-control" />
+                <label class="form-label" for="license">License</label>
+              </div>
+
+            <!-- Submit button -->
+            <button value="Register" type="submit" class="btn btn-primary btn-block mb-4">Register Vehicle</button>
+          
+          </form>
+          <div class="container">
+            <form action="{{ url_for('postGetVehicle')}}" method="get" autocomplete="off">
+              <button type="submit" class="btn btn-primary btn-block">Get list of your Vehicles</button>
+            </form>
+            {% if data %}
+            <div class = "vehicleData">
+              <table width="100%" style='table-layout:fixed;'>
+                <tr>
+                  <th scope="col">VIN:</th>
+                  <th scope="col">Model</th>
+                  <th scope="col">Year: </th>
+                  <th scope="col">Manufactuer</th>
+                  <th scope="col">Color</th>
+                  <th scope="col">License Plate</th>
+              </tr>
+                {% for segment in data %}
+                  <tr>
+                    <td>{{segment[0]}}</td>
+                    <td>{{segment[1]}}</td>
+                    <td>{{segment[2]}}</td>
+                    <td>{{segment[3]}}</td>
+                    <td>{{segment[4]}}</td>
+                    <td>{{segment[5]}}</td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          {% endif %}
+          </div> 
+    </body>
+</html>
